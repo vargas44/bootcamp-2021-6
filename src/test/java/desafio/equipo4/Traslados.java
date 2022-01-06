@@ -28,15 +28,15 @@ public class Traslados {
     }
 
     @Test
-    public void atc01_mensajeDeError() throws InterruptedException {
+    public void atc01_mensajeDeError() {
         //se recomienda usar estos datos para conseguir el error.
         String desdeAeropuerto = "Copiapo";
         String hastaHotel = "copiapo";
         String anioMesArribo = "2022-01";
-        String diaArribo = "3";
+        String diaArribo = "16";
         String hora = "03:00";
 
-        WebDriverWait espera = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait espera = new WebDriverWait(driver, 10);
 
         //Seleccionamos el modulo traslados, 'Desde el aeropuerto e ingresamos un aeropuerto en 'desde'
         driver.findElement(By.xpath("//*[text()='Traslados']")).click();
@@ -75,7 +75,7 @@ public class Traslados {
     }
 
     @Test
-    public void atc02_opcionTransferencia(){
+    public void atc02_opcionTransferencia() {
         String desdeAeropuerto = "Santiago";
         String hastaHotel = "Santiago";
         //Elegir el año actual y los meses debe ser enero o febrero.
@@ -83,7 +83,7 @@ public class Traslados {
         String diaArribo = "16";
         String hora = "21:30";
 
-        WebDriverWait espera = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait espera = new WebDriverWait(driver, 10);
 
         //Seleccionamos el modulo traslados, 'Desde el aeropuerto' e ingresamos un aeropuerto en 'desde'
         driver.findElement(By.xpath("//*[text()='Traslados']")).click();
@@ -128,7 +128,7 @@ public class Traslados {
     }
 
     @Test
-    public void atc03_mensajeError_cuponInvalido(){
+    public void atc03_mensajeError_cuponInvalido() {
         String desdeAeropuerto = "Santiago";
         String hastaHotel = "Santiago";
         //Elegir el año actual, los meses debe ser enero o febrero.
@@ -139,7 +139,7 @@ public class Traslados {
         String email = "jose@email.com";
         String codigoCupon = "123123";
 
-        WebDriverWait espera = new WebDriverWait(driver, Duration.ofSeconds(15));
+        WebDriverWait espera = new WebDriverWait(driver, 15);
 
         //Seleccionamos el modulo traslados, hacemos click en 'desde el aeropuerto' e ingresamos un aeropuerto
         driver.findElement(By.xpath("//*[text()='Traslados']")).click();

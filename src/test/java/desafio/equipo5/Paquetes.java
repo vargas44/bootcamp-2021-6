@@ -33,7 +33,7 @@ public class Paquetes {
     @Test
     public void TC001_PaqueteEconomico() throws InterruptedException {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, 20);
 
         //Origen
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"sbox-row -wrap -row-bottom\"]//input"))).sendKeys("rio");
@@ -81,7 +81,7 @@ public class Paquetes {
     @Test
     public void TC002_PaqueteFiltroMesNoche() {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, 20);
 
         //Origen
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"sbox-row -wrap -row-bottom\"]//input"))).sendKeys("merino");
@@ -131,7 +131,7 @@ public class Paquetes {
     @Test
     public void TC003_PaqueteRecomendado() throws InterruptedException {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, 20);
 
         //Tipo de paquete Vuelo + Auto
         driver.findElement(By.xpath("//div[@class=\"sbox-bundles\"]/span[3]/input[@type=\"radio\"]")).click();

@@ -32,7 +32,8 @@ public class Alojamiento {
         driver = new ChromeDriver();
         driver.get("https://www.viajesfalabella.cl/");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
+
     }
 
 
@@ -40,7 +41,8 @@ public class Alojamiento {
 
     public void tc_001_AlojamientoFiltroEstrellas()  {
 
-        WebDriverWait espera = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+
 
         /*
         By Alojamiento = By.xpath("//label[.='Alojamientos'");
@@ -88,36 +90,14 @@ public class Alojamiento {
         Assert.assertEquals(4,result.size()); */
 
 
+
         //Cargar la página
         driver.get("https://www.viajesfalabella.cl/");
 
-        //click en boton de Alojamiento
-        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[.='Alojamientos']"))).click();
-
-        // Hacer la búsqueda introduciendo la palabra "Santi"
-        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='input-tag sbox-main-focus sbox-destination sbox-primary undefined']"))).sendKeys("santi");
-
-        //selecciona el destino Santiago de chile
-        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='item-text']"))).click();
-
-        //Ingresar cantidad de 3 huespedes
-        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='sbox-3-input -md sbox-distri-input sbox-3-validation -top-right sbox-guests-container']/div[@class='input-container']"))).click(); //click selecionar cantidad
-        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='_pnlpk-itemBlock']//div[@class='_pnlpk-itemRow__item _pnlpk-stepper-adults -medium-down-to-lg']//a[2]"))).click();//click en +(incrementar huespedes)
-
-        //Hacer click en "Todavía no he decidido la fecha"
-        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[@class='checkbox-label']"))).click();
-
-        //Hacer click en "Buscar"
-        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//em[.='Buscar']"))).click();
-
-        //hacer click en estrella
-        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//eva-tooltip[4]//span[@class='eva-3-tag']"))).click();
 
         // En el filtro se escoje 4 estrellas
         driver.findElement(By.xpath("//span[contains(@class,\"-show-tooltip\")]//em[contains(text(),\"4\")and contains(@class,\"filter-name\")]")).click();
 
-        //Hacer click en el boton "aplicar"
-        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='eva-3-tooltip -white -bottom -right -not-hover -show-tooltip']//eva-button[.='Aplicar']"))).click();
 
         //Verificar que los primero 3 alojamientos sean de 4 estrellas
 
@@ -293,7 +273,6 @@ public class Alojamiento {
 
 
     }
-
 
     @Test
     public void tc_003_alojamientoPrecioRango() {

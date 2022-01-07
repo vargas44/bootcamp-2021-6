@@ -1,4 +1,5 @@
 package desafio.equipo5;
+import com.sun.corba.se.impl.orbutil.threadpool.TimeoutException;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.*;
 import org.openqa.selenium.By;
@@ -11,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+import java.time.Clock;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -32,6 +33,7 @@ public class Alojamiento {
         driver = new ChromeDriver();
         driver.get("https://www.viajesfalabella.cl/");
         driver.manage().window().maximize();
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(8, TimeUnit.SECONDS);
 
     }
@@ -40,9 +42,7 @@ public class Alojamiento {
     @Test
 
     public void tc_001_AlojamientoFiltroEstrellas()  {
-
-
-
+        WebDriverWait espera = new WebDriverWait(driver, 10);
 
         /*
         By Alojamiento = By.xpath("//label[.='Alojamientos'");
@@ -55,7 +55,8 @@ public class Alojamiento {
         By Estrella = By.xpath("//eva-tooltip[4]//span[@class='eva-3-tag']");
         By SeleccionaEstrella= By.xpath("//span[contains(@class,\"-show-tooltip\")]//em[contains(text(),\"4\")and contains(@class,\"filter-name\")]");
         By Aplicar = By.xpath("//span[@class='eva-3-tooltip -white -bottom -right -not-hover -show-tooltip']//eva-button[.='Aplicar']");
-        By PrimerosAlojamientos= By.xpath("(//div[contains(@class,\"card-rating\")])[1]//i");
+        By Resultado =By.xpath("(//div[contains(@class,\"card-rating\")])[1]//i");
+        By Mensaje= By.xpath("(//div[contains(@class,\"card-rating\")])[1]//i");
 
         //click en boton de Alojamiento
         espera.until(ExpectedConditions.visibilityOfElementLocated(Alojamiento)).click();
@@ -84,32 +85,59 @@ public class Alojamiento {
 
         //Hacer click en el boton "aplicar"
         espera.until(ExpectedConditions.visibilityOfElementLocated(Aplicar)).click();
+
         //Verificar que los primero 3 alojamientos sean de 4 estrellas
 
-        List<WebElement> result = driver.findElements(PrimerosAlojamientos);
-        Assert.assertEquals(4,result.size()); */
-
-
+        List<WebElement> result = driver.findElements(Resultado);
+        //String results = result.get(0).findElement(Mensaje).getText();
+        Assert.assertEquals(4,result.size());*/
 
         //Cargar la página
         driver.get("https://www.viajesfalabella.cl/");
 
+        //click en boton de Alojamiento
+        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[.='Alojamientos']"))).click();
+
+        // Hacer la búsqueda introduciendo la palabra "Santi"
+        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@class='input-tag sbox-main-focus sbox-destination sbox-primary undefined']"))).sendKeys("santi");
+
+        //selecciona el destino Santiago de chile
+        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='item-text']"))).click();
+
+        //Ingresar cantidad de 3 huespedes
+        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='sbox-3-input -md sbox-distri-input sbox-3-validation -top-right sbox-guests-container']/div[@class='input-container']"))).click(); //click selecionar cantidad
+        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='_pnlpk-itemBlock']//div[@class='_pnlpk-itemRow__item _pnlpk-stepper-adults -medium-down-to-lg']//a[2]"))).click();//click en +(incrementar huespedes)
+
+        //Hacer click en "Todavía no he decidido la fecha"
+        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[@class='checkbox-label']"))).click();
+
+        //Hacer click en "Buscar"
+        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//em[.='Buscar']"))).click();
+
+        //hacer click en estrella
+        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//eva-tooltip[4]//span[@class='eva-3-tag']"))).click();
 
         // En el filtro se escoje 4 estrellas
         driver.findElement(By.xpath("//span[contains(@class,\"-show-tooltip\")]//em[contains(text(),\"4\")and contains(@class,\"filter-name\")]")).click();
 
+        //Hacer click en el boton "aplicar"
+        espera.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@class='eva-3-tooltip -white -bottom -right -not-hover -show-tooltip']//eva-button[.='Aplicar']"))).click();
 
         //Verificar que los primero 3 alojamientos sean de 4 estrellas
 
         List<WebElement> result = driver.findElements(By.xpath("(//div[contains(@class,\"card-rating\")])[1]//i"));
         //String results = result.get(0).findElement(By.xpath("//div[@class=\"offer-card-rating\"]//i")).getText();
         Assert.assertEquals(4,result.size());
+
+
+
     }
 
 
     @Test
     public void tc_002_AlojamientoReservados()  {
-        /*
+        WebDriverWait espera = new WebDriverWait(driver, 10);
+
 
         By Alojamiento = By.xpath("//label[.='Alojamientos']");
         By Busqueda = By.xpath("//label[.='Alojamientos']");
@@ -126,7 +154,11 @@ public class Alojamiento {
         By EdadMenor = By.xpath("//div[@class=\"select-container\"] /select");
         By EdadOtroMenor = By.xpath("//div[@class='_pnlpk-minors-age-select-wrapper']/div[@class='_pnlpk-itemRow _pnlpk-minor-age-select _pnlpk-minor-age-select-last-item']//select[@class='select-tag']");
         By AgregarHabitacion =By.xpath("//a[.='Añadir habitación']");
-        By AgregarAdultos = By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//label[@class='_pnlpk-adults-title']")
+        By AgregarAdultos = By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//label[@class='_pnlpk-adults-title']");
+        By AgregarMenor= By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//label[@class='_pnlpk-minors-title']");
+        By EdadMenAgregado =By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//div[@class='_pnlpk-itemRow _pnlpk-minor-age-select _pnlpk-minor-age-select-last-item']//select[@class='select-tag']");
+        By Busca =By.xpath("//em[.='Buscar']");
+        By CantMenor= By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//div[@class='_pnlpk-itemRow__item _pnlpk-stepper-minors -medium-down-to-lg']//a[2]");
         By Aplicar = By.xpath("//div[@class='_pnlpk-panel__footer -medium-down-to-lg']/a[.='Aplicar']");
         By Mensaje = By.xpath("//h5[@class='message-title eva-3-h5']");
 
@@ -167,7 +199,7 @@ public class Alojamiento {
         edad.selectByVisibleText("3 años");
 
         // Seleccionar edad segundo menor (4 Años)
-        Select ed = new Select(driver.findElement((EdadOtroMenor));
+        Select ed = new Select(driver.findElement((EdadOtroMenor)));
         ed.selectByVisibleText("4 años");
 
         // Se añade otra habitacion
@@ -180,25 +212,25 @@ public class Alojamiento {
             driver.findElement(IconoSumar).click();
 
         //Seleccionar cantidad de 1 (Menor)
-        driver.findElement(By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//label[@class='_pnlpk-minors-title']")).click();
-        driver.findElement(By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//div[@class='_pnlpk-itemRow__item _pnlpk-stepper-minors -medium-down-to-lg']//a[2]")).click();
+        driver.findElement(AgregarMenor).click();
+        driver.findElement(CantMenor).click();
 
         //Seleccionar edad (1 Año)
-        Select menor = new Select(driver.findElement(By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//div[@class='_pnlpk-itemRow _pnlpk-minor-age-select _pnlpk-minor-age-select-last-item']//select[@class='select-tag']")));
+        Select menor = new Select(driver.findElement(EdadMenAgregado));
         menor.selectByVisibleText("1 año");
 
         //Click en el boton "aplicar"
-        driver.findElement(By.xpath("//div[@class='_pnlpk-panel__footer -medium-down-to-lg']/a[.='Aplicar']")).click();
+        driver.findElement(Aplicar).click();
 
         //Click en el boton "buscar"
-        driver.findElement(By.xpath("//em[.='Buscar']")).click();
+        driver.findElement(Busca).click();
 
         //Guardamos el mensaje"Todos los alojamientos en Coyhaique están reservados"
-        String mensaje_alerta = driver.findElement(By.xpath("//h5[@class='message-title eva-3-h5']")).getText();
+        String mensaje_alerta = driver.findElement(Mensaje).getText();
 
         //validamos el mensaje esperado
-        Assert.assertEquals( "Todos los alojamientos en Coyhaique están reservados." ,mensaje_alerta); */
-
+        Assert.assertEquals( "Todos los alojamientos en Coyhaique están reservados." ,mensaje_alerta);
+  /*
         //Cargar la página
         driver.get("https://www.viajesfalabella.cl/");
 
@@ -268,7 +300,7 @@ public class Alojamiento {
         String mensaje_alerta = driver.findElement(By.xpath("//h5[@class='message-title eva-3-h5']")).getText();
 
         //validamos el mensaje esperado
-        Assert.assertEquals( "Todos los alojamientos en Coyhaique están reservados." ,mensaje_alerta);
+        Assert.assertEquals( "Todos los alojamientos en Coyhaique están reservados." ,mensaje_alerta);*/
 
 
 

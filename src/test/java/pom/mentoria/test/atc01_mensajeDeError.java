@@ -1,6 +1,5 @@
 package pom.mentoria.test;
 
-import org.junit.Assert;
 import org.junit.Test;
 import pom.mentoria.base.TestBase;
 import pom.mentoria.pages.VFHomePage;

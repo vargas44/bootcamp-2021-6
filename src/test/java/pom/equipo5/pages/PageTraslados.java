@@ -6,7 +6,7 @@ import pom.equipo5.base.SeleniumBaseE5;
 
 public class PageTraslados extends SeleniumBaseE5 {
 
-    private String text = "el loa";
+    private String text = "";
 
     public PageTraslados(WebDriver driver) {
         super(driver);
@@ -64,5 +64,7 @@ public class PageTraslados extends SeleniumBaseE5 {
     public void ValidarText(){
         validacionText(Verificar, "Auto Estándar");
     }
+
+
 
 }

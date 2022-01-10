@@ -45,9 +45,10 @@ public class Paquetes {
 
         //Fecha ida
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class=\"sbox-dates-row sbox-row\"]//input"))).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[5]//div//div[1]//span[4][contains(span, '4')]"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class=\"_dpmg2--controls-next\"])[3]/i"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@data-month=\"2022-03\"])[3]//span[contains(span, '4')]"))).click();
         //Fecha vuelta
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class=\"_dpmg2--months\"])[3]//div[@class=\"_dpmg2--dates\"]/span[contains(span, '11')]"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@data-month=\"2022-03\"])[3]//span[contains(span, '11')]"))).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[7]//div[6]/div[2]/button[2][@class=\"_dpmg2--desktopFooter-button _dpmg2--desktopFooter-button-apply sbox-3-btn -lg -primary\"]"))).click();
 
         //Seleccionar casilla de habitaciones y huspedes
@@ -105,7 +106,7 @@ public class Paquetes {
         //Selecionar mes
         WebElement mes = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/div/select[@class=\"select-tag sbox-month-seletor\"]")));
         Select select = new Select(mes);
-        select.selectByVisibleText("Febrero 2022");
+        select.selectByVisibleText("Marzo 2022");
 
         //Boton buscar
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[6]/div/a/em[@class=\"btn-text\"]"))).click();
@@ -122,7 +123,7 @@ public class Paquetes {
         String month = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div/p/em[@class=\"-eva-3-bold month -eva-3-capitalize\"]"))).getText();
         //Validar noches y mes
         Assert.assertEquals("6 DÍAS / 5 NOCHES", night);
-        Assert.assertEquals("Febrero", month);
+        Assert.assertEquals("Marzo", month);
 
 
     }

@@ -40,10 +40,10 @@ public class SeleniumBaseE5 {
         }
         //accion -> void
 
-         public void waitExplicitClick(By locator, int time){
+         public void waitExplicitClick(By localizador, int time){
         WebDriverWait espera;
         espera = new WebDriverWait(driver,time);
-        espera.until(ExpectedConditions.elementToBeClickable(locator));
+        espera.until(ExpectedConditions.visibilityOfElementLocated(localizador));
     }
 
         public void clickear(By localizador){

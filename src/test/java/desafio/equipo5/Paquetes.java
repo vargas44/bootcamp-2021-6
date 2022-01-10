@@ -35,8 +35,8 @@ public class Paquetes {
 
         WebDriverWait wait = new WebDriverWait(driver, 20);
 
-        By BtnCajaOrigen = By.xpath("//div[@class=\"sbox-row -wrap -row-bottom\"]//input");
-        By CiudadOrigen = By.xpath("//div[@class=\"ac-container\"]//ul/li//span[1]");
+        By CiudadOrigen = By.xpath("//div[@class=\"sbox-row -wrap -row-bottom\"]//input");
+        By ClickCiudad = By.xpath("//div[@class=\"ac-container\"]//ul/li//span[1]");
         By BtnCajaDestino = By.xpath("//div[@class=\"sbox-second-place-container\"]//input");
         By CiudadDestino = By.xpath("//div[@class=\"ac-group-container\"]/ul/li[1]");
         By BtnFechaIda = By.xpath("//div[@class=\"sbox-dates-row sbox-row\"]//input");
@@ -52,8 +52,8 @@ public class Paquetes {
         By TextAlojamiento = By.xpath("//aloha-location-name//span[@class=\"-eva-3-tc-gray-2\"]");
 
         //Origen
-        wait.until(ExpectedConditions.visibilityOfElementLocated(BtnCajaOrigen)).sendKeys("rio");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(CiudadOrigen)).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CiudadOrigen)).sendKeys("rio");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ClickCiudad)).click();
 
         //Destino
         wait.until(ExpectedConditions.visibilityOfElementLocated(BtnCajaDestino)).sendKeys("carm");

@@ -7,30 +7,30 @@ import pom.equipo5.pages.VFHomePageE5;
 
 public class TC001_PaqueteEconomico extends TestBaseE5 {
 
-    protected PagePaquetes paginaPaquetes;
+    protected PagePaquetes paginapaquetes;
     protected VFHomePageE5 paginahome;
 
     @Test
-    public void Test() {
-        //usar POM :: declarar las pages asoiciadas a la prueba
-        paginaPaquetes = new PagePaquetes(driver);
+    public void Test(){
+
         paginahome = new VFHomePageE5(driver);
         paginahome.abrirHome();
-        paginaPaquetes.CasillaOrigen();
-        paginaPaquetes.IngresaCiudadOrigen();
-        paginaPaquetes.CasillaDestino();
-        paginaPaquetes.IngresaCiudadDestino();
-        paginaPaquetes.CasillaFechaIda();
-        paginaPaquetes.SiguienteMes();
-        paginaPaquetes.IngresarFechaIda();
-        paginaPaquetes.IngresarFechaVuelta();
-        paginaPaquetes.AplicarFecha();
-        paginaPaquetes.CasillaHabitacion();
-        paginaPaquetes.QuitarHuspedes();
-        paginaPaquetes.AplicarHuspedes();
-        paginaPaquetes.BuscarPage();
-        paginaPaquetes.OrdenarPrecio();
-        paginaPaquetes.ValidarText();
+        paginapaquetes = new PagePaquetes(driver);
+        paginapaquetes.IngresoOrigen();
+        paginapaquetes.IngresaCiudadDestino();
+        paginapaquetes.FechaIda1();
+        paginapaquetes.SiguienteMes();
+        paginapaquetes.IngresarFechaIda();
+        paginapaquetes.IngresarFechaVuelta();
+        paginapaquetes.AplicarFecha();
+        paginapaquetes.CasillaHabitacion();
+        paginapaquetes.QuitarHuspedes();
+        paginapaquetes.AplicarHuspedes();
+        paginapaquetes.BuscarPage();
+        paginapaquetes.Esperapagina();
+        paginapaquetes.OrdenarPrecio();
+        paginapaquetes.ValidarTexto();
+
 
     }
 

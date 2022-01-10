@@ -12,7 +12,7 @@ public class PageTraslados extends SeleniumBaseE5 {
         super(driver);
     }
 
-    //Atributos
+    //Atributos TC001_TrasladoAuto
 
     By Traslados = By.xpath("//label[.='Traslados']");
     By EntraAeropuerto = By.xpath("//input[@placeholder='Ingresa un aeropuerto']");
@@ -25,10 +25,9 @@ public class PageTraslados extends SeleniumBaseE5 {
     By BotonBuscar = By.xpath("//em[.='Buscar']");
     By Verificar = By.xpath("//span[.='Auto Estándar']");
 
-    //By para las esperas
-    By recomendaciones_aeropuerto = By.xpath("//ul[@class='ac-group-items']");
-    By recomendaciones_hotel = By.xpath("//*[@class='ac-wrapper -desktop -facet -show']//ul");
+    //Atributos TC002_TrasladoSinResultados
 
+    //Atributos TC003_TrasladoMinivan
 
     //funciones
 

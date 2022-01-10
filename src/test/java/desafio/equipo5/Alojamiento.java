@@ -42,10 +42,10 @@ public class Alojamiento {
     @Test
 
     public void tc_001_AlojamientoFiltroEstrellas()  {
-        WebDriverWait espera = new WebDriverWait(driver, 10);
+        WebDriverWait espera = new WebDriverWait(driver, 8000);
 
-        /*
-        By Alojamiento = By.xpath("//label[.='Alojamientos'");
+
+        By Alojamiento = By.xpath("//label[.='Alojamientos']");
         By Busqueda= By.xpath("//input[@class='input-tag sbox-main-focus sbox-destination sbox-primary undefined']");
         By Destino = By.xpath("//span[@class='item-text']");
         By Huespedes = By.xpath("//div[@class='sbox-3-input -md sbox-distri-input sbox-3-validation -top-right sbox-guests-container']/div[@class='input-container']");
@@ -56,10 +56,10 @@ public class Alojamiento {
         By SeleccionaEstrella= By.xpath("//span[contains(@class,\"-show-tooltip\")]//em[contains(text(),\"4\")and contains(@class,\"filter-name\")]");
         By Aplicar = By.xpath("//span[@class='eva-3-tooltip -white -bottom -right -not-hover -show-tooltip']//eva-button[.='Aplicar']");
         By Resultado =By.xpath("(//div[contains(@class,\"card-rating\")])[1]//i");
-        By Mensaje= By.xpath("(//div[contains(@class,\"card-rating\")])[1]//i");
 
         //click en boton de Alojamiento
-        espera.until(ExpectedConditions.visibilityOfElementLocated(Alojamiento)).click();
+        //espera.until(ExpectedConditions.visibilityOfElementLocated(Alojamiento)).click();
+        driver.findElement(Alojamiento).click();
 
         // Hacer la búsqueda introduciendo la palabra "Santi"
         espera.until(ExpectedConditions.visibilityOfElementLocated(Busqueda)).sendKeys("santi");
@@ -89,8 +89,9 @@ public class Alojamiento {
         //Verificar que los primero 3 alojamientos sean de 4 estrellas
 
         List<WebElement> result = driver.findElements(Resultado);
-        //String results = result.get(0).findElement(Mensaje).getText();
-        Assert.assertEquals(4,result.size());*/
+        Assert.assertEquals(4,result.size());
+
+        /*
 
         //Cargar la página
         driver.get("https://www.viajesfalabella.cl/");
@@ -129,6 +130,8 @@ public class Alojamiento {
         //String results = result.get(0).findElement(By.xpath("//div[@class=\"offer-card-rating\"]//i")).getText();
         Assert.assertEquals(4,result.size());
 
+         */
+
 
 
     }
@@ -136,11 +139,10 @@ public class Alojamiento {
 
     @Test
     public void tc_002_AlojamientoReservados()  {
-        WebDriverWait espera = new WebDriverWait(driver, 10);
-
+        WebDriverWait espera = new WebDriverWait(driver, 8000);
 
         By Alojamiento = By.xpath("//label[.='Alojamientos']");
-        By Busqueda = By.xpath("//label[.='Alojamientos']");
+        By Busqueda = By.xpath("//input[@class='input-tag sbox-main-focus sbox-destination sbox-primary undefined']");
         By Destino = By.xpath("//span[@class='item-text']");
         By Clickcheckin = By.xpath("//input[@class='input-tag sbox-checkin-date']");
         By IconoNext = By.xpath("//div[@class='_dpmg2--controls-next']/i[@class='_dpmg2--icon-ico-arrow']"); //siguiente mes
@@ -155,19 +157,20 @@ public class Alojamiento {
         By EdadOtroMenor = By.xpath("//div[@class='_pnlpk-minors-age-select-wrapper']/div[@class='_pnlpk-itemRow _pnlpk-minor-age-select _pnlpk-minor-age-select-last-item']//select[@class='select-tag']");
         By AgregarHabitacion =By.xpath("//a[.='Añadir habitación']");
         By AgregarAdultos = By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//label[@class='_pnlpk-adults-title']");
+        By IconoAgregar = By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//div[@class='_pnlpk-itemRow__item _pnlpk-stepper-adults -medium-down-to-lg']//a[2]");
         By AgregarMenor= By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//label[@class='_pnlpk-minors-title']");
         By EdadMenAgregado =By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//div[@class='_pnlpk-itemRow _pnlpk-minor-age-select _pnlpk-minor-age-select-last-item']//select[@class='select-tag']");
         By Busca =By.xpath("//em[.='Buscar']");
         By CantMenor= By.xpath("//div[@class='_pnlpk-panel__blocks _pnlpk-dynamicContent']/div[2]//div[@class='_pnlpk-itemRow__item _pnlpk-stepper-minors -medium-down-to-lg']//a[2]");
-        By Aplicar = By.xpath("//div[@class='_pnlpk-panel__footer -medium-down-to-lg']/a[.='Aplicar']");
-        By Mensaje = By.xpath("//h5[@class='message-title eva-3-h5']");
+        By AplicarBusqueda = By.xpath("//div[@class='_pnlpk-panel__footer -medium-down-to-lg']/a[.='Aplicar']");
+        By MensajeGuardado= By.xpath("//h5[@class='message-title eva-3-h5']");
 
 
         //click en boton de Alojamiento
         driver.findElement((Alojamiento)).click();
 
         // Hacer la búsqueda introduciendo la palabra "coyh"
-        driver.findElement(Busqueda ).sendKeys("coyh");
+        driver.findElement(Busqueda).sendKeys("coyh");
 
         //Selecciona la primera opcion "Coyhaique, Aysén, Chile"
         driver.findElement(Destino).click();
@@ -209,7 +212,7 @@ public class Alojamiento {
         driver.findElement(AgregarAdultos).click();
         for (int i=0 ; i<2 ;i++)
             //hacer click en icono + para agregar mas personas
-            driver.findElement(IconoSumar).click();
+            driver.findElement(IconoAgregar).click();
 
         //Seleccionar cantidad de 1 (Menor)
         driver.findElement(AgregarMenor).click();
@@ -220,13 +223,13 @@ public class Alojamiento {
         menor.selectByVisibleText("1 año");
 
         //Click en el boton "aplicar"
-        driver.findElement(Aplicar).click();
+        driver.findElement(AplicarBusqueda).click();
 
         //Click en el boton "buscar"
         driver.findElement(Busca).click();
 
         //Guardamos el mensaje"Todos los alojamientos en Coyhaique están reservados"
-        String mensaje_alerta = driver.findElement(Mensaje).getText();
+        String mensaje_alerta = driver.findElement(MensajeGuardado).getText();
 
         //validamos el mensaje esperado
         Assert.assertEquals( "Todos los alojamientos en Coyhaique están reservados." ,mensaje_alerta);
@@ -308,8 +311,60 @@ public class Alojamiento {
 
     @Test
     public void tc_003_alojamientoPrecioRango() {
+        WebDriverWait espera = new WebDriverWait(driver, 8000);
 
-        //Cargar la página
+        By Alojamiento = By.xpath("//label[.='Alojamientos']");
+        By Busqueda = By.xpath("//input[@class='input-tag sbox-main-focus sbox-destination sbox-primary undefined']");
+        By Destino = By.xpath("//span[@class='item-text']");
+        By sinfecha= By.xpath("//label[@class='checkbox-label']");
+        By Buscar = By.xpath("//em[.='Buscar']");
+        By FiltroPrecio = By.xpath("//eva-tooltip[3]//span[@class='tag-text']");
+        By SliderMenor =By.xpath("//div[@class='slider-handler -left']");
+        By SliderMayor =By.xpath("//div[@class='slider-handler -right']");
+        By Aplicar = By.xpath("//eva-button[2]/a[.='Aplicar']");
+        By Mensaje = By.xpath("//h3[@class='eva-3-h3 tag-text-heading']");
+
+
+
+
+        //click en boton de Alojamiento
+        driver.findElement(Alojamiento).click();
+
+        // Hacer la búsqueda introduciendo la palabra "chill"
+        driver.findElement(Busqueda).sendKeys("chill");
+
+        //selecciona el destino
+        driver.findElement(Destino).click();
+
+        //Hacer click en "Todavía no he decidido la fecha"
+        driver.findElement(sinfecha).click();
+
+        //Hacer click en "Buscar"
+        driver.findElement(Buscar).click();
+
+        //hacer click en filtrar por precio
+        driver.findElement(FiltroPrecio).click();
+
+        //Mover deslizante para elegir el rango de precio
+        WebElement menor = driver.findElement(SliderMenor);
+        Actions moveSlider = new Actions(driver);
+        Action action = moveSlider.dragAndDropBy(menor, 70, 0).build();
+        action.perform();
+
+        WebElement may = driver.findElement(SliderMayor);
+        Actions moveSlide = new Actions(driver);
+        Action actionn = moveSlider.dragAndDropBy(may, -120, 0).build();
+        actionn.perform();
+        //click en rango seleccionado
+        driver.findElement(Aplicar).click();
+
+        //Guardamos el mensaje"No podemos encontrar lo que estás buscando"
+        String mensaje_alerta = driver.findElement(Mensaje).getText();
+
+        //validamos el mensaje esperado
+        Assert.assertEquals( "No podemos encontrar lo que estás buscando" ,mensaje_alerta);
+
+        /* //Cargar la página
         driver.get("https://www.viajesfalabella.cl/");
 
         //click en boton de Alojamiento
@@ -349,6 +404,8 @@ public class Alojamiento {
 
         //validamos el mensaje esperado
         Assert.assertEquals( "No podemos encontrar lo que estás buscando" ,mensaje_alerta);
+
+         */
 
 
     }

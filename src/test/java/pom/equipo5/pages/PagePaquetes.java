@@ -50,7 +50,7 @@ public class PagePaquetes extends SeleniumBaseE5 {
     public void QuitarHuspedes(){clickear(RestarPersonas);}
     public void AplicarHuspedes(){clickear(BtnAplicarHusped);}
     public void BuscarPage(){clickear(BtnBuscar);}
-    public void Esperapagina(){waitExplicitClick(OrdenarPor,15);}
+    public void Esperapagina(){waitExplicitlocated(OrdenarPor,15);}
     public void OrdenarPrecio(){clickear(OrdenarPor);}
     public void ValidarTexto(){
         validacionText(TextAlojamiento, "Playa del Carmen, El Pedregal. A 1,36 km del centro");
@@ -91,13 +91,11 @@ public class PagePaquetes extends SeleniumBaseE5 {
     public void SeleccionNoches(){
         clickear(Noches);
         clickear(BtnAplicarNoches);}
-    public void Esperapagina2(){waitExplicitClick(prueba,4);}
 
+    public void Esperapagina2(){waitExplicitlocated(TextNoches,4);}
 
-    By prueba = By.xpath("(//div[@class=\"filters-content\"])[2]//div[2]/p");
-
-    public void Validacion(){validacionText(prueba,"5 a 7 noches");}
-    //public void ValidacionSecundaria(){validacionText(TextFebrero,"Marzo");}
+    public void Validacion(){validacionText(TextNoches,"6 DÍAS / 5 NOCHES");}
+    public void ValidacionSecundaria(){validacionText(TextFebrero,"Marzo");}
 
 
 

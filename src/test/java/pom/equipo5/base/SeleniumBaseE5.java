@@ -40,9 +40,8 @@ public class SeleniumBaseE5 {
         }
         //accion -> void
 
-         public void waitExplicitClick(By localizador, int time){
-        WebDriverWait espera;
-        espera = new WebDriverWait(driver,time);
+        public void waitExplicitlocated(By localizador, int time){
+        WebDriverWait espera = new WebDriverWait(driver,time);
         espera.until(ExpectedConditions.visibilityOfElementLocated(localizador));
     }
 

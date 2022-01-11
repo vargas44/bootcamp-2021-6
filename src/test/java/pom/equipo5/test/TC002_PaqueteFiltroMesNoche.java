@@ -19,15 +19,14 @@ public class TC002_PaqueteFiltroMesNoche extends TestBaseE5 {
         paginapaquetes.IngresoOrigine2();
         paginapaquetes.IngresaCiudadDestino2();
         paginapaquetes.CasillaHabitacion2();
-        //
         paginapaquetes.SeleccionSinEleccion();
         paginapaquetes.SeleccionarMes();
         paginapaquetes.ClickBuscar();
         paginapaquetes.FiltrarPorNoche();
         paginapaquetes.SeleccionNoches();
-        //paginapaquetes.Esperapagina2();
+        paginapaquetes.Esperapagina2();
         paginapaquetes.Validacion();
-        //paginapaquetes.ValidacionSecundaria();
+        paginapaquetes.ValidacionSecundaria();
 
 
     }

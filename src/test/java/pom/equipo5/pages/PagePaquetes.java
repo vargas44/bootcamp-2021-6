@@ -97,8 +97,74 @@ public class PagePaquetes extends SeleniumBaseE5 {
     public void Validacion(){validacionText(TextNoches,"6 DÍAS / 5 NOCHES");}
     public void ValidacionSecundaria(){validacionText(TextFebrero,"Marzo");}
 
+    //TC003_PaqueteRecomendado
+
+    By TipoPaquete = By.xpath("//div[@class=\"sbox-bundles\"]/span[3]/input[@type=\"radio\"]");
+    By SumarAdultos = By.xpath("//div[@class='_pnlpk-itemRow__item _pnlpk-stepper-adults -medium-down-to-lg']//a[2]\n");
+    By SumarMenores = By.xpath("//div[@class='_pnlpk-itemRow__item _pnlpk-stepper-minors -medium-down-to-lg']//a[2]\n");
+    By PrimerMenor = By.xpath("//div/div/select[@class=\"select-tag\"]");
+    By SegundoMenor = By.xpath("//div[2]/div[2]/div/div/select[@class=\"select-tag\"]");
+    By FiltroAerolinea = By.xpath("//filter-group[@data-sfa-id=\"airlines\"]/li/span[contains(div, 'Aerolíneas')]");
+    By TipoAerolinea = By.xpath("//checkbox-filter[@class=\"airlines\"]//checkbox-filter-item//li/span[contains(span,'American Airlines')]");
+    By FiltroEquipaje = By.xpath("//checkbox-filter[@class=\"baggage\"]//checkbox-filter-item[2]/li/span");
+    By OrdenarPrecio = By.xpath("(//div[@class=\"select-container\"])/select[@id=\"eva-select\"]");
+    By ObtenerPrecio = By.xpath("//div/highlight-level-three//span[contains(text(),\"Vuelo más conveniente\")]");
+
+    By CiudadOrigen2 = By.xpath("//span[.='Punta Cana, La Altagracia, República Dominicana']");
+
+    By Aplicar = By.xpath("//div[2]/a[@class=\"_pnlpk-apply-button sbox-3-btn -primary _pnlpk-panel__button--link-right -lg\"]");
+
+    //Funciones
+    public void TipoPaquetes(){clickear(TipoPaquete);}
+
+    public void EsperaCiudad(){
+        waitExplicitlocated(CiudadOrigen,2);
+    }
+
+    public void IngresoOrigen2(){
+        teclear(CiudadOrigen, "pun");
+        clickear(CiudadOrigen2);
+    }
+    public void IngresaDestino2()
+    {
+        teclear(BtnCajaDestino, "nue");
+        clickear(CiudadDestino);
+    }
+    public void FechaIda2(){clickear(BtnFechaIda);}
+    public void SiguienteMes2(){clickear(BtnNextMes);}
+    public void IngresarFechaIda2(){clickear(FechaIda);}
+    public void IngresarFechaVuelta2(){clickear(FechaVuelta);}
+    public void AplicarFecha2(){clickear(BtnAplicarFecha);}
+    public void CasillaHabitacioneAdulto(){
+        clickear(CajaHabitaciones);
+        for (int i = 2; i < 4; i++) {
+            clickear(SumarAdultos);
+        }
+    }
+    public void CasillaHabitacionMenores(){
+        for (int j = 0; j < 2; j++) {
+            clickear(SumarMenores);
+        }
+    }
+    public void EdadMenores(){listaEstatica(PrimerMenor,"2 años");
+        listaEstatica(SegundoMenor,"8 años");
+    }
+    public void BotonAplicar(){
+        clickear(Aplicar);
+    }
+    public void ClickBuscar2(){clickear(BtnBuscar);}
+
+    public void Esperapagina3(){waitExplicitlocated(TipoAerolinea,6);}
 
 
-
+    public void FiltrarAerolinea(){
+        clickear(FiltroAerolinea);
+        clickear(TipoAerolinea);
+    }
+    public void FiltrarEquipaje(){clickear(FiltroEquipaje);}
+    public void FiltroOrdenar(){listaEstatica(OrdenarPrecio,"Precio");}
+    public void ObtenerText(){
+        validacionText(ObtenerPrecio,"Vuelo más conveniente");
+    }
 
 }

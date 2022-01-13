@@ -1,5 +1,5 @@
 package desafio.equipo5;
-import com.sun.corba.se.impl.orbutil.threadpool.TimeoutException;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.*;
 import org.openqa.selenium.By;
